@@ -3,9 +3,9 @@ package com.diatomicsoft.todocompose.ui.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.diatomicsoft.todocompose.navigation.NavigationDestination
 import com.diatomicsoft.todocompose.ui.screens.home.HomeScreenRoute
 import kotlinx.serialization.Serializable
-import kotlin.reflect.KClass
 
 @Serializable
 object HomeScreenRoute
@@ -14,9 +14,9 @@ fun NavController.navigateToHome() =
     navigate(route = HomeScreenRoute)
 
 fun NavGraphBuilder.homeScreen(
-    navigator: (KClass<*>) -> Unit
+    navigator: (NavigationDestination) -> Unit
 ) {
-    composable(route = HomeScreenRoute.toString()) {
+    composable<HomeScreenRoute> {
         HomeScreenRoute(navigator = navigator)
     }
 }

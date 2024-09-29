@@ -2,8 +2,9 @@ package com.diatomicsoft.todocompose.core.localdb.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Upsert
 import com.diatomicsoft.todocompose.data.model.ModelTask
 import kotlinx.coroutines.flow.Flow
 
@@ -28,14 +29,11 @@ interface TasksDao {
     @Query("SELECT EXISTS(SELECT 1 FROM task_table LIMIT 1)")
     fun hasTasks(): Flow<Boolean>
 
-    @Query("SELECT * FROM task_table WHERE date = :date")
-    fun getTaskByDate(date: String): Flow<List<ModelTask>>
-
     @Delete
     suspend fun deleteTask(task: ModelTask)
 
-    @Upsert
-    suspend fun insertTask(task: ModelTask)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTask(task: ModelTask): Long
 
 
 }

@@ -1,14 +1,17 @@
 package com.diatomicsoft.todocompose.navigation
 
-sealed class NavigationDestination {
+sealed interface NavigationDestination {
 
     //<editor-fold desc="Home">
-    data class ActionHomeToTaskDetails(val taskId: Int? = null) : NavigationDestination()
+    data class ActionHomeToTaskDetails(val taskId: Int? = null) : NavigationDestination
     //</editor-fold>
 
     //<editor-fold desc="Empty Screen">
     data class ActionEmptyScreenToAddEditTaskDialog(val taskId: Int? = null) :
-        NavigationDestination()
+        NavigationDestination
     //</editor-fold>
+
+
+
 
 }

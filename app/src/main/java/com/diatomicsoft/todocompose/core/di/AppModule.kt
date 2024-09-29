@@ -3,6 +3,7 @@ package com.diatomicsoft.todocompose.core.di
 import android.content.Context
 import androidx.room.Room
 import com.diatomicsoft.todocompose.core.localdb.MyRoomDatabase
+import com.diatomicsoft.todocompose.core.localdb.dao.TasksDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +24,7 @@ object AppModule {
     }
 
 
-    /*    @Provides
-        fun provideTaskDao(db: MyRoomDatabase):TasksDao = db.taskDao()*/
+        @Provides
+        fun provideTaskDao(db: MyRoomDatabase): TasksDao = db.taskDao()
 
 }
